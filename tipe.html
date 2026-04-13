@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIPE — Flywheel Shape Optimization · Hamza HOUIR ALAMI</title>
+  <meta name="description" content="Shape optimization of a flywheel under perimeter constraint — L-BFGS-B, Trust-Region, Fourier parameterization, experimentally validated." />
+  <meta property="og:title" content="Flywheel Shape Optimization — Hamza HOUIR ALAMI" />
+  <meta property="og:description" content="Maximize moment of inertia under fixed perimeter. Fourier, Polynomial, Polar parameterizations. Convergence to circle confirmed via isoperimetric inequality." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-square">HHA</div>
+    <span>Hamza H. Alami</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+    <li class="nav-dropdown">
+      <button class="dropdown-toggle" type="button" data-i18n="nav.projects">Projects</button>
+      <div class="dropdown-menu">
+        <a href="projects.html" data-i18n="nav.allProjects" style="font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:10px;">All Projects</a>
+        <a href="tipe.html" data-i18n="nav.tipe">Flywheel Shape Optimization</a>
+        <a href="thepnlab.html" data-i18n="nav.thepnlab">ThePnLab — Trading Platform</a>
+        <a href="amje.html" data-i18n="nav.amje">AMJE Lille</a>
+        <a href="cnn-lispen.html" data-i18n="nav.cnn">CNN / LISPEN</a>
+        <a href="fsam.html" data-i18n="nav.fsam">FSAM — Formula Student</a>
+        <a href="planeur.html" data-i18n="nav.planeur">Glider Wing Study</a>
+      </div>
+    </li>
+    <li><a href="academics.html" data-i18n="nav.academics">Academics</a></li>
+    <li><a href="resume.html" data-i18n="nav.resume">Resume</a></li>
+    <li><a href="mailto:h.houir.alami@gmail.com" class="nav-cta" data-i18n="nav.cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── PROJECT HEADER ───────────────────────────────── -->
+<div class="project-header">
+  <a href="index.html" class="back-link" data-i18n="back.portfolio">← Back to portfolio</a>
+  <div class="project-header-tags">
+    <span class="tag" data-i18n="tipe.tag1">Continuous Optimization</span>
+    <span class="tag">KKT Conditions</span>
+    <span class="tag">L-BFGS-B</span>
+    <span class="tag">Trust-Region</span>
+    <span class="tag" data-i18n="tipe.tag5">Experimental Validation</span>
+    <span class="tag tag-gray">Finalized · Score 8/10 (Pr. Harlan)</span>
+  </div>
+  <h1 class="project-h1" data-i18n="tipe.h1">Shape Optimization of a Flywheel</h1>
+  <div class="project-h1-divider"></div>
+  <div class="project-meta">
+    <span>01 — TIPE</span>
+    <span>ENSAM Lille · 2025–2026</span>
+    <span data-i18n="tipe.supervisor">Supervisor: Pr. Harlan</span>
+  </div>
+</div>
+
+<!-- ─── CONTENT ───────────────────────────────────────── -->
+<div class="project-page">
+
+  <p class="project-intro" data-i18n="tipe.intro">
+    A flywheel stores kinetic energy proportional to its moment of inertia.
+    Given a fixed perimeter of material, what shape maximizes $I$?
+    This project solves that shape optimization problem computationally —
+    comparing four parameterizations and validating the result with a physical prototype.
+  </p>
+
+  <!-- Card 1 -->
+  <div class="p-card">
+    <div class="p-card-inner">
+      <figure class="p-card-img">
+        <img src="fig_inertia_shapes.png" alt="Moment of inertia comparison — circle vs other shapes" />
+        <figcaption data-i18n="tipe.fig1.caption">Circle maximizes $I$ for fixed perimeter — confirmed numerically across all parameterizations</figcaption>
+      </figure>
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="tipe.s1.title">1. Mathematical Model</h2>
+        <p data-i18n-html="tipe.s1.p1">
+          The objective is to maximize the moment of inertia $I$ over all closed curves
+          $\gamma$ of fixed perimeter $L_0$, modeled as a 1D wire of linear density $\mu = 1\ \text{kg/m}$.
+          The exact functional is:
+        </p>
+        <div class="math-block">
+          $$\max_{\gamma} \; I = \mu \int_0^{2\pi} r(\theta)^2 \sqrt{r(\theta)^2 + r'(\theta)^2} \, d\theta$$
+        </div>
+        <p data-i18n-html="tipe.s1.p2">
+          For computational tractability, the arc-length element is approximated as
+          $\sqrt{r^2+r'^2} \approx r$ — a second-order approximation valid near the
+          circular optimum ($r' \ll r$, error $O((r'/r)^2)$) — yielding the simplified objective
+          $I \approx \mu \int_0^{2\pi} r^3\,d\theta$ used in the numerical experiments.
+          Both functionals share the same global maximizer.
+        </p>
+        <p data-i18n="tipe.s1.p3">Subject to three constraints:</p>
+        <div class="math-block">
+          $$\text{(C1)}\; \int_0^{2\pi} \sqrt{r^2 + r'^2}\, d\theta = L_0 \qquad \text{(C2)}\; r(0)=r(2\pi)$$
+          $$\text{(C3)}\; \int_0^{2\pi} r\cos\theta\, d\theta = 0, \quad \int_0^{2\pi} r\sin\theta\, d\theta = 0$$
+        </div>
+        <div class="p-highlight">
+          <div class="p-highlight-title" data-i18n="tipe.insight.title">Key insight</div>
+          <p style="font-size:14px;color:var(--text-secondary);margin:0;" data-i18n-html="tipe.insight.body">
+            A variational argument shows the circle is a critical point of $I$ under
+            the perimeter constraint; the isoperimetric inequality ($4\pi A \leq L^2$)
+            then confirms it is the unique global maximum. The computational contribution is
+            <em>verifying convergence across parameterizations</em> and quantifying failure modes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="p-card">
+    <div class="p-card-inner reverse">
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="tipe.s2.title">2. Four Parameterizations Compared</h2>
+        <p data-i18n="tipe.s2.p1">
+          The curve $r(\theta)$ was represented four ways.
+          Each parameterization leads to a different numerical behavior:
+        </p>
+        <table class="data-table" style="margin-top:16px;">
+          <thead>
+            <tr><th>#</th><th data-i18n="tipe.s2.th.param">Parameterization</th><th data-i18n="tipe.s2.th.finding">Key finding</th></tr>
+          </thead>
+          <tbody data-i18n-html="tipe.s2.tbody">
+            <tr>
+              <td>1</td>
+              <td>Fourier (linear)</td>
+              <td>Converges to circle — constraints couple naturally</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Polynomial (polar)</td>
+              <td><strong>Runge phenomenon</strong>: ~15% error on $I$ at degree $n=50$</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Polar (free $r(\theta_i)$)</td>
+              <td>Converges cleanly with Trust-Region</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>3D surface extension</td>
+              <td>Diverges without compactness constraint</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-card-img" style="display:flex;flex-direction:column;gap:12px;">
+        <div class="p-highlight" style="margin:0;">
+          <div class="p-highlight-title" data-i18n="tipe.solvers.title">Solver Summary</div>
+          <ul class="p-highlight-list" style="margin:0;" data-i18n-html="tipe.solvers.list">
+            <li><strong>L-BFGS-B</strong> — Fourier: quasi-Newton, handles box constraints, converges in &lt;50 iterations</li>
+            <li><strong>Trust-Region</strong> — Polar &amp; Polynomial: robust near equality constraints (C1, C3)</li>
+            <li>Both via <code>scipy.optimize</code> — full convergence history logged</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="p-card">
+    <div class="p-card-inner">
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="tipe.s3.title">3. Results &amp; Experimental Validation</h2>
+        <p data-i18n-html="tipe.s3.p1">
+          A physical flywheel (circular, as predicted) was fabricated and tested
+          on a miniature vehicle (mass 34g). Measured velocity $v(t)$ was compared
+          against the theoretical prediction from the optimized $I$.
+        </p>
+
+        <figure style="margin:0 0 20px;">
+          <img src="fig_results_bar.png" alt="Theory vs Experiment — braking distance" style="width:100%;border-radius:8px;border:1px solid var(--border);" />
+          <figcaption style="font-size:12px;color:var(--text-muted);margin-top:6px;font-style:italic;" data-i18n="tipe.fig2.caption">Theory vs. experiment — braking distance with and without flywheel</figcaption>
+        </figure>
+        <div class="result-grid" style="margin:20px 0;">
+          <div class="result-item">
+            <div class="result-value">~0%</div>
+            <div class="result-label" data-i18n="tipe.r1.label">Deviation from circle (Fourier, at convergence)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">~15%</div>
+            <div class="result-label" data-i18n="tipe.r2.label">Error on $I$ — Runge phenomenon (polynomial, $n=50$)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">≤ 6%</div>
+            <div class="result-label" data-i18n="tipe.r3.label">Max experimental error — braking distance (n=5 runs, p&lt;0.0001)</div>
+          </div>
+        </div>
+
+        <div class="p-highlight">
+          <div class="p-highlight-title" data-i18n="tipe.limits.title">Honest limitations</div>
+          <ul class="p-highlight-list" data-i18n-html="tipe.limits.list">
+            <li>The shape optimization result is scale-independent (pure geometry). The experimental velocity comparison is affected by aerodynamic drag: the miniature vehicle (34g, characteristic length $L \approx 0.08\,\text{m}$, measured speed $V \approx 0.2\,\text{m/s}$) operates at $Re = \rho V L / \mu \approx 1081$ — laminar regime — while automotive flywheels operate at $Re \gg 10^5$ (turbulent), making direct aerodynamic extrapolation invalid.</li>
+            <li>Polynomial Runge phenomenon: degree $n$ must be bounded to avoid instability</li>
+            <li>Friction model simplified — Coulomb + viscous would reduce the 5.7% error</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 — Part II Braking Dynamics -->
+  <div class="p-card">
+    <div class="p-card-inner reverse">
+      <div class="p-card-img" style="width:220px;">
+        <div class="p-highlight" style="margin-top:0;">
+          <div class="p-highlight-title" data-i18n="tipe.expresults.title">Experimental Results</div>
+          <ul class="p-highlight-list" data-i18n-html="tipe.expresults.list">
+            <li><strong>Without flywheel:</strong> 0.82 m measured vs 0.87 m theory → 5.7% error</li>
+            <li><strong>With flywheel:</strong> 1.08 m measured vs 1.10 m theory → 1.8% error</li>
+            <li><strong>Flywheel effect:</strong> +26% braking distance (theory), +32% measured</li>
+            <li><strong>Statistical validation:</strong> n=5 runs, Student t-test p &lt; 0.0001</li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="tipe.s4.title">4. Part II — Braking Dynamics &amp; KERS Validation</h2>
+        <p data-i18n-html="tipe.s4.p1">
+          A flywheel stores rotational energy $E_c = \frac{1}{2}I\omega^2$.
+          When coupled to a braking vehicle, it increases the effective inertia —
+          and therefore braking distance. This Part II models, solves analytically,
+          and validates experimentally the full braking dynamics.
+        </p>
+        <h3 style="font-size:14px;font-weight:600;margin:16px 0 6px;" data-i18n="tipe.s4.ode.title">Governing ODE &amp; Closed-Form Solution</h3>
+        <p data-i18n-html="tipe.s4.ode.p1">
+          Projecting Newton's second law along motion with drag ($\frac{1}{2}C_x\rho S v^2$),
+          braking friction ($F_f$), and rolling resistance ($mgf$):
+        </p>
+        <div class="math-block">
+          $$m\dot{v} = -(Av^2 + \alpha) \qquad A = \tfrac{1}{2}C_x\rho S,\quad \alpha = F_f + mgf$$
+        </div>
+        <p data-i18n-html="tipe.s4.ode.p2">Defining transition speed $\gamma = \sqrt{\alpha/A}$, the closed-form solution is:</p>
+        <div class="math-block">
+          $$v(t) = \gamma\tan\!\left(\arctan\tfrac{v_0}{\gamma} - \tfrac{\alpha}{m\gamma}t\right)$$
+          $$X(t) = -\frac{m\gamma^2}{\alpha}\ln\frac{\cos(\arctan(v_0/\gamma)-\alpha t/(m\gamma))}{\cos(\arctan(v_0/\gamma))}$$
+        </div>
+        <p data-i18n-html="tipe.s4.ode.p3">
+          For our experiment: $\gamma \approx 35\,\text{m/s} \gg v_0 = 0.811\,\text{m/s}$
+          — drag is negligible (&lt;1%), friction dominates. Parameters identified experimentally:
+          $f = \tan(5.89°) \approx 0.103$ (inclined-plane test), $C_D \approx 1.1$ at $Re = 1081$.
+        </p>
+        <h3 style="font-size:14px;font-weight:600;margin:16px 0 6px;" data-i18n="tipe.s4.why.title">Why the Flywheel Increases Braking Distance</h3>
+        <div class="math-block">
+          $$E_{\text{total}} = \tfrac{1}{2}(m + I_{\text{fly}}/R^2)\,v^2 \implies \frac{\Delta X}{X_0} = \frac{I_{\text{fly}}}{mR^2}$$
+        </div>
+        <p data-i18n="tipe.s4.why.p">
+          The flywheel adds rotational kinetic energy that must also be dissipated by braking.
+          In a true KERS system this energy is recovered; in the direct-coupling model it simply
+          increases effective inertia. Theory agrees with experiment within 6%.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="p-actions">
+    <a href="TIPE_Portfolio_Report_22.pdf" target="_blank" class="p-btn" data-i18n="tipe.download.en">&#8659; Download Report (EN)</a>
+    <a href="TIPE_Portfolio_Report_FR.pdf" target="_blank" class="p-btn p-btn-outline" data-i18n="tipe.download.fr">&#8659; Télécharger le rapport (FR)</a>
+  </div>
+
+</div>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span>Hamza HOUIR ALAMI · ENSAM Lille · 2026</span>
+    <a href="index.html" style="color:var(--bordeaux);" data-i18n="footer.portfolio">← Back to portfolio</a>
+  </div>
+</footer>
+
+<script src="i18n.js?v=3"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>

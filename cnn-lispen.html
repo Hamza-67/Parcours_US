@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CNN / LISPEN — Predictive Maintenance · Hamza HOUIR ALAMI</title>
+  <meta name="description" content="CNN on mel-spectrograms for bearing fault classification. Optimal maintenance threshold minimizing total expected cost. LISPEN research lab, ENSAM." />
+  <meta property="og:title" content="Predictive Maintenance & Optimal Threshold — Hamza HOUIR ALAMI" />
+  <meta property="og:description" content="Research at LISPEN lab. CNN fault detection on CWRU dataset. Decision-theoretic threshold optimization under availability constraints." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-square">HHA</div>
+    <span>Hamza H. Alami</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+    <li class="nav-dropdown">
+      <button class="dropdown-toggle" type="button" data-i18n="nav.projects">Projects</button>
+      <div class="dropdown-menu">
+        <a href="projects.html" data-i18n="nav.allProjects" style="font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:10px;">All Projects</a>
+        <a href="tipe.html" data-i18n="nav.tipe">Flywheel Shape Optimization</a>
+        <a href="thepnlab.html" data-i18n="nav.thepnlab">ThePnLab — Trading Platform</a>
+        <a href="amje.html" data-i18n="nav.amje">AMJE Lille</a>
+        <a href="cnn-lispen.html" data-i18n="nav.cnn">CNN / LISPEN</a>
+        <a href="fsam.html" data-i18n="nav.fsam">FSAM — Formula Student</a>
+        <a href="planeur.html" data-i18n="nav.planeur">Glider Wing Study</a>
+      </div>
+    </li>
+    <li><a href="academics.html" data-i18n="nav.academics">Academics</a></li>
+    <li><a href="resume.html" data-i18n="nav.resume">Resume</a></li>
+    <li><a href="mailto:h.houir.alami@gmail.com" class="nav-cta" data-i18n="nav.cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── PROJECT HEADER ───────────────────────────────── -->
+<div class="project-header">
+  <a href="index.html" class="back-link" data-i18n="back.portfolio">← Back to portfolio</a>
+  <div class="project-header-tags">
+    <span class="tag">CNN · Keras</span>
+    <span class="tag" data-i18n="cnn.tag2">Threshold Optimization</span>
+    <span class="tag">KKT Conditions</span>
+    <span class="tag" data-i18n="cnn.tag4">LISPEN Research Lab</span>
+    <span class="tag tag-gray" data-i18n="cnn.tag.status">PJT1A ENSAM · Starting April 2026</span>
+  </div>
+  <h1 class="project-h1" data-i18n="cnn.h1">Predictive Maintenance &amp; Optimal Decision Threshold</h1>
+  <div class="project-meta">
+    <span>04 — CNN / LISPEN</span>
+    <span>ENSAM Lille · PJT1A · 2025–2026</span>
+    <span data-i18n="cnn.supervisor">Supervisor: Prof. Stephan · ENSAM Lille</span>
+  </div>
+</div>
+
+<!-- ─── BODY ──────────────────────────────────────────── -->
+<div class="project-body">
+  <div class="project-content">
+
+    <!-- Context -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="cnn.context.title">Context &amp; Motivation</h2>
+      <p class="content-p" data-i18n="cnn.context.p1">
+        This is a PJT1A group project (second semester, ENSAM Lille) starting
+        end of April 2026. The base assignment: given vibration data from
+        industrial bearings, build and train a CNN classifier to distinguish
+        fault types. In parallel, I am developing a personal extension: using
+        the classifier's probability outputs as inputs to a formal maintenance
+        optimization problem.
+      </p>
+      <p class="content-p" data-i18n-html="cnn.context.p2">
+        The OR extension idea was presented to — and validated by — Prof.
+        Stephan, who also suggested connecting it with ongoing work at the
+        <strong>LISPEN lab</strong> (Laboratoire d'Ingénierie des Systèmes
+        Physiques et Numériques). Two preliminary meetings have already taken
+        place with LISPEN researchers, exploring their work on synthetic fault
+        data generators and neural network-based diagnostics. The collaboration
+        is an ongoing discussion.
+      </p>
+      <div class="callout" data-i18n-html="cnn.bridge.callout">
+        <strong>The bridge:</strong> Most ML-for-maintenance work stops at
+        classification accuracy. This project asks: given a classifier with
+        known uncertainty, <em>what decision threshold minimizes expected
+        total cost</em>? That is an optimization problem, not a modeling problem.
+      </div>
+    </div>
+
+    <!-- Part 1 — CNN -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="cnn.s1.title">Part 1 — CNN Fault Classifier (base project)</h2>
+
+      <h3 class="content-h3" data-i18n="cnn.s1.dataset.title">Dataset: CWRU Bearing Data</h3>
+      <p class="content-p" data-i18n="cnn.s1.dataset.p">
+        Case Western Reserve University (CWRU) bearing dataset — the standard
+        benchmark for machinery fault detection. Vibration signals from drive-end
+        bearings under four conditions:
+      </p>
+      <table class="data-table">
+        <thead><tr><th data-i18n="cnn.dataset.th.class">Class</th><th data-i18n="cnn.dataset.th.desc">Description</th><th data-i18n="cnn.dataset.th.signal">Signal characteristic</th></tr></thead>
+        <tbody data-i18n-html="cnn.dataset.tbody">
+          <tr><td><strong>Normal</strong></td><td>Healthy bearing</td><td>Low-amplitude broadband noise</td></tr>
+          <tr><td><strong>Inner race fault</strong></td><td>Defect on inner ring</td><td>Periodic impulses at BPFI frequency</td></tr>
+          <tr><td><strong>Outer race fault</strong></td><td>Defect on outer ring</td><td>Periodic impulses at BPFO frequency</td></tr>
+          <tr><td><strong>Ball fault</strong></td><td>Rolling element defect</td><td>Impulses at BSF frequency</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="content-h3" data-i18n="cnn.s1.preproc.title">Preprocessing pipeline</h3>
+      <p class="content-p" data-i18n="cnn.s1.preproc.p">
+        Raw time-series → Short-Time Fourier Transform (STFT) →
+        Mel-frequency spectrogram → CNN input (2D image).
+        The mel scale emphasizes lower frequencies where mechanical fault
+        signatures typically concentrate.
+      </p>
+
+      <h3 class="content-h3" data-i18n="cnn.s1.arch.title">Architecture</h3>
+      <table class="data-table">
+        <thead><tr><th data-i18n="cnn.arch.th.layer">Layer</th><th data-i18n="cnn.arch.th.config">Configuration</th></tr></thead>
+        <tbody data-i18n-html="cnn.arch.tbody">
+          <tr><td>Conv2D × 3</td><td>32→64→128 filters, 3×3 kernels, ReLU, BatchNorm</td></tr>
+          <tr><td>MaxPooling × 3</td><td>2×2</td></tr>
+          <tr><td>GlobalAveragePooling</td><td>Reduces spatial dimensions</td></tr>
+          <tr><td>Dense → Softmax</td><td>4-class output: [P(normal), P(inner), P(outer), P(ball)]</td></tr>
+        </tbody>
+      </table>
+      <p class="content-p" style="margin-top:12px;" data-i18n-html="cnn.s1.arch.p">
+        The softmax output produces a <strong>probability vector</strong>
+        $\mathbf{p} = [P(\text{normal}), P(\text{inner}), P(\text{outer}), P(\text{ball})]$.
+        For the OR extension, the four classes are aggregated into 3 operational states:
+        <em>normal</em> (class 0 unchanged), <em>degraded</em> (minor fault — small-defect
+        variants of inner/outer), and <em>faulty</em> (severe fault — large-defect variants
+        and ball fault), with the fault probability used in the threshold decision defined as
+        $P(\text{faulty}) = P(\text{inner}) + P(\text{outer}) + P(\text{ball})$.
+        This re-labeling is applied at inference time; the CNN is trained on the original 4-class labels.
+      </p>
+    </div>
+
+    <!-- Part 2 — OR Extension -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="cnn.s2.title">Part 2 — OR Extension: Optimal Threshold (personal initiative)</h2>
+
+      <h3 class="content-h3" data-i18n="cnn.s2.problem.title">Problem statement</h3>
+      <p class="content-p" data-i18n-html="cnn.s2.problem.p">
+        Given the classifier output $\mathbf{p}$, we must decide:
+        <em>intervene for preventive maintenance now</em>, or
+        <em>continue running</em>. The threshold $\theta$ governs this decision:
+        intervene if $P(\text{faulty}) \geq \theta$.
+      </p>
+      <p class="content-p" data-i18n-html="cnn.s2.econ.p">
+        The economic problem: setting $\theta$ too low triggers costly unnecessary
+        interventions (false alarms); too high risks undetected failures
+        (expensive breakdowns). Find $\theta^*$ that minimizes expected total cost.
+      </p>
+
+      <h3 class="content-h3" data-i18n="cnn.s2.formulation.title">Formulation</h3>
+      <div class="math-block">
+        $$\min_{\theta \in [0,1]} \; C(\theta) = c_{\text{prev}} \cdot P(\text{FP}(\theta)) + c_{\text{failure}} \cdot P(\text{FN}(\theta))$$
+      </div>
+      <p class="content-p" data-i18n="cnn.s2.where">where:</p>
+      <div class="math-block">
+        $$\begin{aligned}
+        &P(\text{FP}(\theta)) = P\!\left(\hat{y}=\text{fault} \mid y=\text{normal}\right) \quad \text{(unnecessary intervention)} \\[6pt]
+        &P(\text{FN}(\theta)) = P\!\left(\hat{y}=\text{normal} \mid y=\text{fault}\right) \quad \text{(missed breakdown)}
+        \end{aligned}$$
+      </div>
+
+      <h3 class="content-h3" data-i18n="cnn.s2.avail.title">Availability constraint</h3>
+      <div class="math-block">
+        $$\text{subject to:} \quad A(\theta) = 1 - \frac{\mathbb{E}[\text{downtime}(\theta)]}{\mathbb{E}[\text{total time}]} \geq 0.95$$
+      </div>
+
+      <h3 class="content-h3" data-i18n="cnn.s2.kkt.title">Optimality conditions</h3>
+      <p class="content-p" data-i18n-html="cnn.s2.kkt.p">
+        In the population sense, $C(\theta)$ is differentiable in $\theta$
+        (FP and FN rates are CDFs of the classifier score, continuous under
+        mild distributional assumptions). On the empirical validation set,
+        a kernel-smoothed estimate of the cost curve is used to enable gradient descent.
+        Writing the availability constraint as $g(\theta) = 0.95 - A(\theta) \leq 0$,
+        the KKT conditions at the optimum give:
+      </p>
+      <div class="math-block">
+        $$\begin{aligned}
+        &\frac{dC}{d\theta} - \lambda \frac{dA}{d\theta} = 0 \\[6pt]
+        &\lambda \geq 0, \quad \lambda \cdot (A(\theta^*) - 0.95) = 0
+        \end{aligned}$$
+      </div>
+      <p class="content-p" data-i18n-html="cnn.s2.kkt.interp">
+        If the availability constraint is not binding ($A(\theta^*) > 0.95$),
+        the unconstrained minimum is optimal: $dC/d\theta = 0$, which yields the
+        classical cost-weighted ROC threshold.
+        When the constraint binds ($\lambda > 0$), $\theta^*$ is pushed toward more
+        conservative intervention (lower threshold) — the cost of missed breakdowns
+        outweighs the gain from reducing false alarms.
+      </p>
+
+      <div class="callout" data-i18n-html="cnn.tipe.callout">
+        <strong>Connection to TIPE:</strong> This is the same mathematical structure
+        — constrained nonlinear optimization, KKT conditions at the boundary —
+        applied to a fundamentally different physical domain. The skeleton is identical.
+      </div>
+
+      <h3 class="content-h3" data-i18n="cnn.s2.resolution.title">Resolution</h3>
+      <p class="content-p" data-i18n="cnn.s2.resolution.p1">
+        The cost curve $C(\theta)$ is estimated on the validation set via kernel smoothing
+        (Gaussian kernel, bandwidth selected by cross-validation) to recover a differentiable
+        approximation. The availability constraint is handled with a log-barrier penalty:
+      </p>
+      <div class="math-block">
+        $$\min_{\theta} \; C(\theta) - \epsilon \log\!\left(A(\theta) - 0.95\right)$$
+      </div>
+      <p class="content-p" data-i18n-html="cnn.s2.resolution.p2">
+        As $\epsilon \to 0^+$, the barrier solution converges to the constrained optimum.
+        In practice, $\epsilon$ is decreased geometrically (outer loop) while an inner
+        gradient descent minimizes the penalized objective at each step.
+        Implemented in Python / scipy (L-BFGS-B on the smoothed + penalized curve).
+      </p>
+    </div>
+
+    <!-- LISPEN -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="cnn.lispen.title">LISPEN Research Contribution</h2>
+      <p class="content-p" data-i18n="cnn.lispen.p">
+        Following two preliminary meetings with LISPEN researchers
+        (Laboratoire d'Ingénierie des Systèmes Physiques et Numériques):
+      </p>
+      <ul class="limitation-list" data-i18n-html="cnn.lispen.list">
+        <li>
+          <strong>Two preliminary meetings</strong> held with LISPEN researchers —
+          exploring the lab's work on production line fault simulation and neural
+          network-based diagnostics.
+        </li>
+        <li>
+          <strong>Potential collaboration</strong> discussed: possible roles include
+          data preprocessing, baseline model implementation, and literature review —
+          contributing progressively to ongoing research.
+        </li>
+        <li>
+          <strong>PJT2A possibility</strong> in second year (not yet formalized) —
+          potential to extend this work into a full research project with LISPEN.
+        </li>
+        <li>
+          <strong>Status: ongoing</strong> — no formal access or role confirmed yet;
+          the project will begin to take shape from end of April 2026.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Limitations -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="cnn.limits.title">Honest Limitations</h2>
+      <ul class="limitation-list" data-i18n-html="cnn.limits.list">
+        <li>
+          CWRU is a well-studied benchmark — the CNN result is not novel.
+          The contribution is the OR extension and the cost-optimal threshold formulation.
+        </li>
+        <li>
+          Cost parameters $c_{\text{prev}}$ and $c_{\text{failure}}$ are synthetic
+          (assumed ratio). Real deployment requires client-specific cost estimation.
+        </li>
+        <li>
+          The availability model assumes stationary failure rates — in practice,
+          degradation is non-stationary (Weibull processes), which would require
+          a dynamic programming formulation.
+        </li>
+        <li>
+          LISPEN research contribution is at an early stage — no published results,
+          no formal authorship yet.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Forward look -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="cnn.forward.title">Forward Look</h2>
+      <p class="content-p" data-i18n-html="cnn.forward.p">
+        The natural extension of this project is a <strong>Markov Decision Process</strong>
+        formulation of the maintenance problem: state = (equipment condition estimate,
+        time since last maintenance), action = {inspect, maintain, run}, reward =
+        negative cost, with stochastic transitions governed by the failure model.
+        This would connect directly to graduate coursework in stochastic optimization
+        and dynamic programming.
+      </p>
+    </div>
+
+  </div><!-- /project-content -->
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────── -->
+  <aside class="project-sidebar">
+    <div class="sidebar-box" style="text-align:center;padding:14px 16px;">
+      <p style="font-size:0.82rem;color:var(--muted);margin:0;line-height:1.5;" data-i18n="cnn.no.report">Report available upon project completion (from May 2026).</p>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="cnn.sb.or.title">OR Topics</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.or.1">Constrained threshold optimization</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.or.2">KKT conditions (same as TIPE)</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.or.3">Expected cost minimization</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.or.4">Availability constraint (SLA)</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.or.5">MDP formulation (future)</div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="cnn.sb.ml.title">ML Stack</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.ml.1">Keras / TensorFlow</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.ml.2">STFT → Mel-spectrogram</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.ml.3">CWRU bearing dataset</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.ml.4">scipy.optimize</div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="cnn.sb.status.title">Status</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.status.1">CNN: starting end of April 2026</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.status.2">OR extension: planned</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.status.3">LISPEN: 2 preliminary meetings</div>
+    </div>
+    <div class="sidebar-box" style="text-align:center;">
+      <div class="sidebar-box-title" data-i18n="cnn.sb.lab.title">Lab</div>
+      <img src="lipsen.jpg" alt="LISPEN lab" style="width:100%; border-radius:8px; margin-top:6px;" />
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="cnn.sb.coursework.title">Coursework link</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.coursework.1">NO_Gradient → descent on C(θ)</div>
+      <div class="sidebar-item" data-i18n="cnn.sb.coursework.2">NO_Lagrange → KKT at constraint</div>
+    </div>
+  </aside>
+</div>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span>Hamza HOUIR ALAMI · ENSAM Lille · 2026</span>
+    <a href="index.html" style="color:var(--bordeaux);" data-i18n="footer.portfolio">← Back to portfolio</a>
+  </div>
+</footer>
+
+<script src="i18n.js?v=3"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>

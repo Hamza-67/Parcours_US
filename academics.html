@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academics — Hamza HOUIR ALAMI</title>
+  <meta name="description" content="Academic background of Hamza Houir Alami — ENSAM Lille (Engineering MSc), CPGE at Lycée Faidherbe, and self-directed study in numerical optimization." />
+  <meta property="og:title" content="Academics — Hamza HOUIR ALAMI" />
+  <meta property="og:description" content="Arts et Métiers ParisTech (ENSAM Lille) engineering student. CPGE at Lycée Faidherbe. Focus on numerical optimization and operations research." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <style>
+    /* ── Academic Journey layout ── */
+    .academics-header {
+      padding-top: calc(var(--nav-h) + 72px);
+      padding-bottom: 56px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .academics-page-title {
+      font-family: var(--serif);
+      font-size: 46px;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .academics-page-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* ── Institution block ── */
+    .institution {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 64px 40px;
+    }
+
+    .institution + .institution {
+      border-top: 1px solid var(--border);
+    }
+
+    .institution-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .institution-name {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .institution-dates {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .institution-degree {
+      font-size: 14px;
+      color: var(--bordeaux);
+      font-weight: 500;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    .institution-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .institution-text p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .institution-text p:last-child { margin-bottom: 0; }
+    .institution-text strong { color: var(--text); font-weight: 600; }
+
+    /* Course tags / highlights */
+    .institution-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .highlight-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.01em;
+    }
+
+    /* Photo grid */
+    .institution-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .institution-photo {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      display: block;
+    }
+
+    .institution-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #f5f0eb 0%, #ece6df 100%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Wide photo (spans 2 cols) */
+    .institution-photo-wide {
+      grid-column: span 2;
+      aspect-ratio: 16/7;
+    }
+
+    /* Logo / SVG variant — white bg, contain */
+    .institution-photo-logo {
+      object-fit: contain;
+      background: white;
+      padding: 16px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .academics-header {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: calc(var(--nav-h) + 48px);
+      }
+      .academics-page-title { font-size: 32px; }
+      .institution { padding: 48px 20px; }
+      .institution-body { grid-template-columns: 1fr; gap: 32px; }
+      .institution-photos { grid-template-columns: 1fr 1fr; }
+      .institution-photo-wide { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-square">HHA</div>
+    <span>Hamza H. Alami</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+    <li class="nav-dropdown">
+      <button class="dropdown-toggle" type="button" data-i18n="nav.projects">Projects</button>
+      <div class="dropdown-menu">
+        <a href="projects.html" data-i18n="nav.allProjects" style="font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:10px;">All Projects</a>
+        <a href="tipe.html" data-i18n="nav.tipe">Flywheel Shape Optimization</a>
+        <a href="thepnlab.html" data-i18n="nav.thepnlab">ThePnLab — Trading Platform</a>
+        <a href="amje.html" data-i18n="nav.amje">AMJE Lille</a>
+        <a href="cnn-lispen.html" data-i18n="nav.cnn">CNN / LISPEN</a>
+        <a href="fsam.html" data-i18n="nav.fsam">FSAM — Formula Student</a>
+        <a href="planeur.html" data-i18n="nav.planeur">Glider Wing Study</a>
+      </div>
+    </li>
+    <li><a href="academics.html" data-i18n="nav.academics" style="color:var(--bordeaux);">Academics</a></li>
+    <li><a href="resume.html" data-i18n="nav.resume">Resume</a></li>
+    <li><a href="mailto:h.houir.alami@gmail.com" class="nav-cta" data-i18n="nav.cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── PAGE HEADER ───────────────────────────────────── -->
+<div class="academics-header">
+  <div class="section-label" data-i18n="academics.label">Education</div>
+  <h1 class="academics-page-title" data-i18n="academics.title">Academic Journey</h1>
+  <p class="academics-page-subtitle" data-i18n="academics.subtitle">
+    Two institutions, four years of formation — from the competitive pressure
+    of Classes Préparatoires to the engineering curriculum of Arts et Métiers ParisTech.
+  </p>
+</div>
+
+<hr class="divider" />
+
+<!-- ─── ENSAM ─────────────────────────────────────────── -->
+<div class="institution">
+  <div class="institution-meta">
+    <div class="institution-name" data-i18n="ensam.name">Arts et Métiers ParisTech — ENSAM Lille</div>
+    <div class="institution-dates" data-i18n="ensam.dates">Sept 2024 — July 2027</div>
+  </div>
+  <div class="institution-degree" data-i18n-html="ensam.degree">Engineering Degree (MSc level) — <em>Diplôme d'ingénieur</em></div>
+
+  <div class="institution-body">
+    <div class="institution-text">
+      <p data-i18n-html="ensam.p1">
+        Arts et Métiers ParisTech is one of France's seven leading engineering schools
+        (<em>Grandes Écoles</em>), founded in 1806. Admission is through a national competitive
+        examination taken after two years of intensive preparatory studies — roughly equivalent
+        to gaining admission to a top US engineering school based purely on exam performance.
+      </p>
+      <p data-i18n-html="ensam.p2">
+        The <strong>Diplôme d'ingénieur</strong> is a five-year Bologna-equivalent degree
+        (3 years preparatory + 2 years engineering school), accredited at MSc level by the
+        French national engineering accreditation body (CTI), the equivalent of ABET.
+        Recognized by the French government as equivalent to a Master's degree.
+      </p>
+      <p data-i18n-html="ensam.p3">
+        The Lille campus specializes in mechanical engineering, materials science, and
+        industrial optimization — a technical foundation that directly underpins every
+        project in this portfolio.
+      </p>
+      <div class="institution-highlights">
+        <span class="highlight-tag">NO_Gradient</span>
+        <span class="highlight-tag">NO_Lagrange</span>
+        <span class="highlight-tag">NO_Metropolis</span>
+        <span class="highlight-tag">Mechanics</span>
+        <span class="highlight-tag">Materials</span>
+        <span class="highlight-tag">Formula Student</span>
+        <span class="highlight-tag">Gadz'Humanitaire</span>
+      </div>
+    </div>
+
+    <div class="institution-photos">
+      <img src="arts.jpeg" alt="ENSAM Lille — campus aerial view" class="institution-photo" loading="lazy" />
+      <img src="arts%202.png" alt="ENSAM Lille — Arts et Métiers" class="institution-photo institution-photo-logo" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ─── FAIDHERBE / CPGE ───────────────────────────────── -->
+<div class="institution">
+  <div class="institution-meta">
+    <div class="institution-name" data-i18n="faidherbe.name">Lycée Faidherbe</div>
+    <div class="institution-dates" data-i18n="faidherbe.dates">Sept 2022 — July 2024</div>
+  </div>
+  <div class="institution-degree" data-i18n="faidherbe.degree">Intensive two-year preparation in Physics, Mathematics, and Engineering Science for top French engineering schools.</div>
+
+  <div class="institution-body">
+    <div class="institution-text">
+      <p data-i18n-html="faidherbe.p1">
+        After the French baccalaureate, a small fraction of top students enter
+        <strong>CPGE</strong> (Classes Préparatoires aux Grandes Écoles) — a nationally
+        selective two-year program equivalent in rigor to the first two years of MIT or
+        Caltech undergraduate coursework. It is designed exclusively for the national
+        competitive entrance exams of France's top engineering schools (<em>Grandes Écoles</em>).
+        Admission is based solely on academic record; fewer than 15% of baccalaureate holders qualify.
+      </p>
+      <p data-i18n-html="faidherbe.p2">
+        The <strong>PSI track</strong> (Physics &amp; Engineering Sciences) covers
+        advanced mathematics, physics, and industrial sciences at a depth roughly
+        equivalent to a double major in Applied Mathematics and Physics — ~40 hours
+        of structured coursework per week, weekly graded exams and oral evaluations.
+      </p>
+      <p data-i18n-html="faidherbe.p3">
+        <strong>Lycée Faidherbe</strong> (Lille) consistently ranks among France's top PSI
+        programs, placing students at École Polytechnique, Centrale-Supélec, and
+        Mines-Ponts. These two years shaped the mathematical reflexes that underpin
+        every formulation in this portfolio.
+      </p>
+      <div class="institution-highlights">
+        <span class="highlight-tag">Advanced Mathematics</span>
+        <span class="highlight-tag">Physics</span>
+        <span class="highlight-tag">Engineering Sciences</span>
+        <span class="highlight-tag">Thermodynamics</span>
+        <span class="highlight-tag">Mechanics</span>
+        <span class="highlight-tag">Signal Processing</span>
+      </div>
+    </div>
+
+    <div class="institution-photos">
+      <img src="faidherbe%202.jpeg" alt="Lycée Faidherbe — campus" class="institution-photo" loading="lazy" />
+      <img src="faidherrbe.svg" alt="Lycée Faidherbe — logo" class="institution-photo institution-photo-logo" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ─── SELF-DIRECTED STUDY ───────────────────────────── -->
+<div class="institution">
+  <div class="institution-meta">
+    <div class="institution-name" data-i18n="selfstudy.name">Self-Directed Study — Numerical Optimization</div>
+    <div class="institution-dates" data-i18n="selfstudy.dates">2025 — ongoing</div>
+  </div>
+  <div class="institution-degree" data-i18n="selfstudy.degree">Independent · self-directed</div>
+  <div class="institution-body">
+    <div class="institution-text">
+      <p data-i18n="selfstudy.p1">
+        Parallel to coursework, working through a structured sequence of numerical
+        optimization topics that directly underpin each project in this portfolio.
+        Not a formal course — topics chosen based on what each project actually requires.
+      </p>
+      <p data-i18n="selfstudy.p2">
+        The goal is to close the gap between what is taught in the engineering
+        curriculum and what is required to formulate and solve the problems I
+        actually work on.
+      </p>
+    </div>
+    <div>
+      <div class="institution-highlights">
+        <span class="highlight-tag">Gradient Methods</span>
+        <span class="highlight-tag">KKT Conditions</span>
+        <span class="highlight-tag">Lagrange Multipliers</span>
+        <span class="highlight-tag">Convex Optimization</span>
+        <span class="highlight-tag">Metaheuristics</span>
+        <span class="highlight-tag">Operations Research</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span>Hamza HOUIR ALAMI · ENSAM Lille · 2026</span>
+    <span>
+      <a href="https://github.com/Hamza-67" target="_blank" style="color:var(--text-muted); margin-right:16px;">GitHub</a>
+      <a href="https://fr.linkedin.com/in/hamza-houir-alami-016a88372" target="_blank" style="color:var(--text-muted); margin-right:16px;">LinkedIn</a>
+      <a href="mailto:h.houir.alami@gmail.com" style="color:var(--bordeaux);">Contact</a>
+    </span>
+  </div>
+</footer>
+
+<script src="i18n.js?v=3"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>

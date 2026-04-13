@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Claude
+.claude/
+
+# LaTeX source & build artifacts
+*.tex
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Word / raw docs
+*.docx
+
+# Duplicate CV (seul cv.pdf est utilisé)
+CV_portfolio_v_N.pdf
+cv2.pdf
+
+# Pages brouillon non finalisées
+pwc.html
+tournimap.html

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — Hamza HOUIR ALAMI</title>
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <style>
+    .not-found {
+      min-height: calc(100vh - var(--nav-h) - 80px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 60px) 40px 80px;
+    }
+    .not-found-code {
+      font-family: var(--serif);
+      font-size: 96px;
+      font-weight: 500;
+      color: var(--bordeaux);
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: 0.18;
+    }
+    .not-found-title {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .not-found-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .not-found-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-square">HHA</div>
+    <span>Hamza H. Alami</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+    <li class="nav-dropdown">
+      <button class="dropdown-toggle" type="button" data-i18n="nav.projects">Projects</button>
+      <div class="dropdown-menu">
+        <a href="projects.html" data-i18n="nav.allProjects" style="font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:10px;">All Projects</a>
+        <a href="tipe.html" data-i18n="nav.tipe">Flywheel Shape Optimization</a>
+        <a href="thepnlab.html" data-i18n="nav.thepnlab">ThePnLab — Trading Platform</a>
+        <a href="amje.html" data-i18n="nav.amje">AMJE Lille</a>
+        <a href="cnn-lispen.html" data-i18n="nav.cnn">CNN / LISPEN</a>
+        <a href="fsam.html" data-i18n="nav.fsam">FSAM — Formula Student</a>
+        <a href="planeur.html" data-i18n="nav.planeur">Glider Wing Study</a>
+      </div>
+    </li>
+    <li><a href="academics.html" data-i18n="nav.academics">Academics</a></li>
+    <li><a href="resume.html" data-i18n="nav.resume">Resume</a></li>
+    <li><a href="mailto:h.houir.alami@gmail.com" class="nav-cta" data-i18n="nav.cta">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="not-found">
+  <div class="not-found-code">404</div>
+  <h1 class="not-found-title">Page not found</h1>
+  <p class="not-found-desc">
+    This page doesn't exist or has been moved.
+    Head back to the portfolio or browse the projects.
+  </p>
+  <div class="not-found-links">
+    <a href="index.html" class="p-btn">← Back to portfolio</a>
+    <a href="projects.html" class="p-btn p-btn-outline">Browse projects</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>Hamza HOUIR ALAMI · ENSAM Lille · 2026</span>
+    <span>
+      <a href="https://github.com/Hamza-67" target="_blank" style="color:var(--text-muted); margin-right:16px;">GitHub</a>
+      <a href="https://fr.linkedin.com/in/hamza-houir-alami-016a88372" target="_blank" style="color:var(--text-muted); margin-right:16px;">LinkedIn</a>
+      <a href="mailto:h.houir.alami@gmail.com" style="color:var(--bordeaux);">Contact</a>
+    </span>
+  </div>
+</footer>
+
+<script src="i18n.js?v=3"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>

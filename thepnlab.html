@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThePnLab — Algorithmic Trading Platform · Hamza HOUIR ALAMI</title>
+  <meta name="description" content="ThePnLab — paper trading platform for French students. TOPSIS multi-criteria engine, Kelly Criterion sizing, VIX regime controller." />
+  <meta property="og:title" content="ThePnLab — Algorithmic Trading Platform · Hamza HOUIR ALAMI" />
+  <meta property="og:description" content="Free paper-trading simulation. MCDM/TOPSIS on 50+ assets, Kelly Criterion position sizing, React + FastAPI stack." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-square">HHA</div>
+    <span>Hamza H. Alami</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+    <li class="nav-dropdown">
+      <button class="dropdown-toggle" type="button" data-i18n="nav.projects">Projects</button>
+      <div class="dropdown-menu">
+        <a href="projects.html" data-i18n="nav.allProjects" style="font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:10px;">All Projects</a>
+        <a href="tipe.html" data-i18n="nav.tipe">Flywheel Shape Optimization</a>
+        <a href="thepnlab.html" data-i18n="nav.thepnlab">ThePnLab — Trading Platform</a>
+        <a href="amje.html" data-i18n="nav.amje">AMJE Lille</a>
+        <a href="cnn-lispen.html" data-i18n="nav.cnn">CNN / LISPEN</a>
+        <a href="fsam.html" data-i18n="nav.fsam">FSAM — Formula Student</a>
+        <a href="planeur.html" data-i18n="nav.planeur">Glider Wing Study</a>
+      </div>
+    </li>
+    <li><a href="academics.html" data-i18n="nav.academics">Academics</a></li>
+    <li><a href="resume.html" data-i18n="nav.resume">Resume</a></li>
+    <li><a href="mailto:h.houir.alami@gmail.com" class="nav-cta" data-i18n="nav.cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── PROJECT HEADER ───────────────────────────────── -->
+<div class="project-header">
+  <a href="index.html" class="back-link" data-i18n="back.portfolio">← Back to portfolio</a>
+  <div class="project-header-tags">
+    <span class="tag">Score Composite · 9 signaux</span>
+    <span class="tag">Kelly Criterion</span>
+    <span class="tag" data-i18n="thepnlab.tag3">Décision Séquentielle</span>
+    <span class="tag">Streamlit / FastAPI</span>
+    <span class="tag tag-gray">Live · thepnlab.com</span>
+  </div>
+  <h1 class="project-h1" data-i18n="thepnlab.h1">ThePnLab — Algorithmic Paper Trading Platform</h1>
+  <div class="project-h1-divider"></div>
+  <div class="project-meta">
+    <span>02 — ThePnLab</span>
+    <span data-i18n="thepnlab.dates">2025–2026 · ongoing</span>
+    <span>thepnlab.com</span>
+  </div>
+</div>
+
+<!-- ─── CONTENT ───────────────────────────────────────── -->
+<div class="project-page">
+
+  <p class="project-intro" data-i18n="thepnlab.intro">
+    Plateforme de paper-trading gratuite pour étudiants en finance, construite pour étudier
+    la prise de décision algorithmique sur les marchés sans capital réel.
+    Un moteur de scoring composite sur 9 indicateurs sélectionne et dimensionne
+    des positions sur 36+ actifs en temps réel, avec un bot LLM (Gemini 2.0 Flash)
+    comme cerveau de décision et un contrôleur de régime de risque piloté par le VIX.
+  </p>
+
+  <!-- Card 1 — Platform & Stack -->
+  <div class="p-card">
+    <div class="p-card-inner">
+      <figure class="p-card-img">
+        <img src="thepnlab.png" alt="ThePnLab dashboard" />
+        <figcaption data-i18n="thepnlab.fig1.caption">ThePnLab — live dashboard</figcaption>
+      </figure>
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="thepnlab.s1.title">1. The Platform</h2>
+        <p data-i18n="thepnlab.s1.p1">
+          ThePnLab sert deux objectifs simultanément : un produit déployé
+          (utilisateurs réels, données de marché live) et un véhicule d'apprentissage
+          pour comprendre la prise de décision algorithmique en finance quantitative.
+        </p>
+        <p data-i18n="thepnlab.s1.p2">
+          Le cycle de décision s'exécute quotidiennement à l'ouverture. Chaque run :
+          téléchargement OHLCV de 36+ actifs → scoring composite 9 indicateurs →
+          dimensionnement Kelly → multiplicateur régime VIX → analyse news macro →
+          décision LLM structurée (JSON validé) → exécution simulée.
+        </p>
+        <div class="p-highlight">
+          <div class="p-highlight-title" data-i18n="thepnlab.stack.title">Technical Stack</div>
+          <ul class="p-highlight-list" data-i18n-html="thepnlab.stack.list">
+            <li><strong>Frontend :</strong> Streamlit + Plotly — dashboard, portfolio, leaderboard</li>
+            <li><strong>Backend :</strong> FastAPI (Python) — moteur de décision, données marché, auth</li>
+            <li><strong>Base de données :</strong> PostgreSQL (Railway) — historique trades, PnL, portfolio</li>
+            <li><strong>Scheduler :</strong> APScheduler — cycle décisionnel quotidien à l'ouverture</li>
+            <li><strong>LLM :</strong> Gemini 2.0 Flash + Groq Llama-3.3-70B (secours)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 — TOPSIS -->
+  <div class="p-card">
+    <div class="p-card-inner reverse">
+      <div class="p-card-img" style="width:220px;">
+        <div class="p-highlight" style="margin-top:0;">
+          <div class="p-highlight-title" data-i18n="thepnlab.features.title">Features used</div>
+          <ul class="p-highlight-list" data-i18n-html="thepnlab.features.list">
+            <li>RSI(14) — zone momentum</li>
+            <li>MACD(12,26,9) — direction tendance</li>
+            <li>ADX(14) — force de tendance</li>
+            <li>Volume surge — flux institutionnel</li>
+            <li>Momentum 1j + 5j</li>
+            <li>Bandes de Bollinger</li>
+            <li>ATR% — volatilité</li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="thepnlab.s2.title">2. Sélection d'actifs — Score Composite</h2>
+        <p data-i18n-html="thepnlab.topsis.p1">
+          Chaque actif $i$ reçoit un score composite $s_i \in [-20, +20]$
+          calculé par un modèle additif pondéré sur 9 indicateurs techniques :
+        </p>
+        <div class="math-block">
+          $$s_i = s_{\text{RSI}} + s_{\text{MACD}} + s_{\text{ADX}} + s_{\text{vol}} + s_{\text{mom5j}} + s_{\text{mom1j}} + s_{\text{BB}} + s_{\text{ATR}} + s_{\text{cat}}$$
+        </div>
+        <p data-i18n-html="thepnlab.topsis.p2">
+          Chaque composante $s_k$ est une fonction de scoring par morceaux (ex. RSI entre 50 et 68 → $+3{,}0$ pts ;
+          RSI $> 80$ → $-3{,}5$ pts). Le screening de 36 actifs s'effectue en parallèle
+          via \texttt{ThreadPoolExecutor} (12 workers) en moins de 10 secondes.
+          Les actifs les mieux classés sont transmis au moteur LLM.
+        </p>
+        <p style="font-size:13px;color:var(--text-muted);font-style:italic;" data-i18n="thepnlab.mcdm.note">
+          Classification honnête : AMCD appliquée — pas un modèle de prédiction de rendement.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 — Kelly + VIX -->
+  <div class="p-card">
+    <div class="p-card-inner">
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="thepnlab.s3.title">3. Position Sizing &amp; Risk Control</h2>
+        <p data-i18n="thepnlab.kelly.p1">
+          Selected assets are sized using a fractional Kelly criterion,
+          estimated on the last 30 days of trade history (minimum 10 trades):
+        </p>
+        <div class="math-block">
+          $$f^* = \frac{p \cdot b - q}{b} \qquad f_{\text{used}} = 0.25 \times f^*$$
+        </div>
+        <p data-i18n-html="thepnlab.kelly.p2">
+          where $p$ = empirical win rate over the last 30 trades, $q = 1 - p$,
+          and $b = \mathbb{E}[\text{gain} \mid \text{win}] \,/\, \mathbb{E}[|\text{loss}| \mid \text{loss}]$
+          is the average profit-to-loss ratio (net payoff per winning trade divided by
+          net loss per losing trade, both in absolute value).
+          The 0.25× factor is a conservative fractional Kelly multiplier
+          that reduces variance at the cost of sub-optimal long-run growth rate.
+        </p>
+        <p data-i18n="thepnlab.kelly.p3">
+          A VIX regime controller then scales all position sizes:
+        </p>
+        <div class="p-highlight">
+          <div class="p-highlight-title" data-i18n="thepnlab.vix.title">VIX Regime Multipliers</div>
+          <ul class="p-highlight-list" data-i18n-html="thepnlab.vix.list">
+            <li>VIX &lt; 25 → full size (×1.0)</li>
+            <li>VIX 25–35 → reduced size (×0.5)</li>
+            <li>VIX &gt; 35 → minimal exposure (×0.25)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-card-img" style="width:220px;">
+        <div class="p-highlight" style="margin-top:0;">
+          <div class="p-highlight-title" data-i18n="thepnlab.llm.title">LLM Adaptive Layer</div>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;" data-i18n-html="thepnlab.llm.body">
+            Recent PnL history is injected into a prompt to modulate
+            strategy aggressiveness. Explicitly <em>not</em> formal RL —
+            an adaptive heuristic on top of the rule-based engine.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 — Results -->
+  <div class="p-card">
+    <div class="p-card-inner">
+      <div class="p-card-text">
+        <h2 class="p-card-num" data-i18n="thepnlab.s4.title">4. Résultats (30 jours — live)</h2>
+
+        <div class="result-grid" style="margin:16px 0 24px;">
+          <div class="result-item">
+            <div class="result-value">+$386</div>
+            <div class="result-label" data-i18n="thepnlab.r1.label">P&amp;L bot (30 jours)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">37%</div>
+            <div class="result-label" data-i18n="thepnlab.r2.label">Win Rate (27W / 46L)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">196</div>
+            <div class="result-label" data-i18n="thepnlab.r3.label">Trades exécutés (30j)</div>
+          </div>
+          <div class="result-item">
+            <div class="result-value">10</div>
+            <div class="result-label">Actifs tradés</div>
+          </div>
+        </div>
+
+        <div class="callout callout-warning" data-i18n-html="thepnlab.stat.note">
+          <strong>Note :</strong> ETH-USD est le meilleur actif avec <strong>+$353,23</strong> sur la période.
+          Le taux de gain de 37% est inférieur à 50%, mais le bot reste profitable grâce à un ratio
+          gain/perte favorable (les gains moyens compensent les pertes moyennes).
+          252+ trades sont nécessaires pour une inférence statistique significative.
+        </div>
+
+        <div class="p-highlight" style="margin-top:20px;">
+          <div class="p-highlight-title" data-i18n="thepnlab.openq.title">Open research questions</div>
+          <ul class="p-highlight-list" data-i18n-html="thepnlab.openq.list">
+            <li>Formalisation MDP complète : état $(S_t, \text{VIX}_t, \text{portfolio}_t)$</li>
+            <li>Backtesting vectorisé avec coûts de transaction</li>
+            <li>Agent RL (PPO/DQN) pour remplacer l'heuristique LLM</li>
+            <li>Calibration HMM sur le VIX pour la détection de régimes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="p-actions">
+    <a href="https://thepnlab.com" target="_blank" class="p-btn" data-i18n="thepnlab.visit">&#8599; Visit thepnlab.com</a>
+    <a href="thepnlab_report.pdf" target="_blank" class="p-btn p-btn-outline" data-i18n="thepnlab.download.en">&#8659; Download Report (EN)</a>
+    <a href="thepnlab_report_fr.pdf" target="_blank" class="p-btn p-btn-outline" data-i18n="thepnlab.download.fr">&#8659; Télécharger le rapport (FR)</a>
+  </div>
+
+</div>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span>Hamza HOUIR ALAMI · ENSAM Lille · 2026</span>
+    <a href="index.html" style="color:var(--bordeaux);" data-i18n="footer.portfolio">← Back to portfolio</a>
+  </div>
+</footer>
+
+<script src="i18n.js?v=3"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>

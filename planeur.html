@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glider Wing Study — CFD & Structural Analysis · Hamza HOUIR ALAMI</title>
+  <meta name="description" content="Glider wing aerodynamic study — Prandtl lifting line, CFD in Star-CCM+ (RANS k-ω SST), structural FEA in Abaqus." />
+  <meta property="og:title" content="Glider Wing Study — CFD & Structural Analysis · Hamza HOUIR ALAMI" />
+  <meta property="og:description" content="Full aerodynamic and structural analysis of a glider wing. Star-CCM+ CFD, Abaqus FEA, Python post-processing." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css?v=4" />
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-square">HHA</div>
+    <span>Hamza H. Alami</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+    <li class="nav-dropdown">
+      <button class="dropdown-toggle" type="button" data-i18n="nav.projects">Projects</button>
+      <div class="dropdown-menu">
+        <a href="projects.html" data-i18n="nav.allProjects" style="font-weight:600;border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:10px;">All Projects</a>
+        <a href="tipe.html" data-i18n="nav.tipe">Flywheel Shape Optimization</a>
+        <a href="thepnlab.html" data-i18n="nav.thepnlab">ThePnLab — Trading Platform</a>
+        <a href="amje.html" data-i18n="nav.amje">AMJE Lille</a>
+        <a href="cnn-lispen.html" data-i18n="nav.cnn">CNN / LISPEN</a>
+        <a href="fsam.html" data-i18n="nav.fsam">FSAM — Formula Student</a>
+        <a href="planeur.html" data-i18n="nav.planeur">Glider Wing Study</a>
+      </div>
+    </li>
+    <li><a href="academics.html" data-i18n="nav.academics">Academics</a></li>
+    <li><a href="resume.html" data-i18n="nav.resume">Resume</a></li>
+    <li><a href="mailto:h.houir.alami@gmail.com" class="nav-cta" data-i18n="nav.cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── PROJECT HEADER ───────────────────────────────── -->
+<div class="project-header">
+  <a href="projects.html" class="back-link" data-i18n="back.projects">← Back to projects</a>
+  <div class="project-header-tags">
+    <span class="tag" data-i18n="planeur.tag1">CFD Simulation</span>
+    <span class="tag">Star-CCM+</span>
+    <span class="tag">Python</span>
+    <span class="tag" data-i18n="planeur.tag4">Aerodynamics</span>
+    <span class="tag" data-i18n="planeur.tag5">Wing Sizing</span>
+    <span class="tag tag-gray">ENSAM · Academic · Duo · 2025–2026</span>
+  </div>
+  <h1 class="project-h1" data-i18n="planeur.h1">Glider Wing — Aerodynamic Study &amp; CFD Simulation</h1>
+  <div class="project-h1-divider"></div>
+  <div class="project-meta">
+    <span>07 — Glider Wing</span>
+    <span>ENSAM Lille · 2025–2026</span>
+    <span data-i18n="planeur.supervised">Supervised academic project · Duo</span>
+  </div>
+</div>
+
+<!-- ─── BODY ──────────────────────────────────────────── -->
+<div class="project-body">
+  <div class="project-content">
+
+    <!-- Context -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="planeur.context.title">Context</h2>
+      <p class="content-p" data-i18n="planeur.context.p1">
+        A supervised academic project at ENSAM Lille, carried out in a duo under
+        professor guidance. The objective: study the aerodynamic behavior of a glider
+        wing through analytical sizing and numerical simulation using
+        computational fluid dynamics (CFD).
+      </p>
+      <p class="content-p" data-i18n-html="planeur.context.p2">
+        The project was structured across <strong>three successive deliverables</strong>,
+        progressing from theoretical sizing to mesh generation and full CFD simulation.
+        No physical fabrication — the contribution is entirely computational and analytical.
+      </p>
+    </div>
+
+    <!-- Deliverable 1 — Sizing -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="planeur.s1.title">Phase 1 — Wing Sizing</h2>
+      <p class="content-p" data-i18n="planeur.s1.p1">
+        The first phase establishes the analytical baseline: sizing the wing geometry
+        to meet lift and structural requirements for a given flight envelope.
+      </p>
+      <h3 class="content-h3" data-i18n="planeur.s1.lift.title">Lift model</h3>
+      <p class="content-p" data-i18n-html="planeur.s1.lift.p1">
+        Using the thin airfoil theory and the lifting line model (Prandtl), the lift
+        coefficient $C_L$ is related to the angle of attack $\alpha$ and the wing
+        geometry (aspect ratio $\mathcal{A}$, span $b$, chord $c$):
+      </p>
+      <div class="math-block">
+        $$C_L = \frac{2\pi \alpha}{1 + \frac{2}{\mathcal{A}}} \qquad \text{where} \quad \mathcal{A} = \frac{b^2}{S}$$
+      </div>
+      <p class="content-p" data-i18n-html="planeur.s1.lift.p2">
+        The required lift force $L = \frac{1}{2} \rho V^2 S C_L$ sets the wing surface $S$
+        for a given flight speed $V$ and aircraft mass. Total drag is decomposed as:
+      </p>
+      <div class="math-block">
+        $$C_D = C_{D_0} + \frac{C_L^2}{\pi \mathcal{A} \, e}$$
+      </div>
+      <p class="content-p" data-i18n-html="planeur.s1.lift.p3">
+        where $C_{D_0}$ is the zero-lift (profile) drag coefficient and $e \leq 1$ is the
+        Oswald span efficiency factor ($e = 1$ for an elliptical lift distribution).
+        The sizing iterates over aspect ratio $\mathcal{A}$ to maximize the glide ratio
+        $C_L / C_D$ subject to structural constraints on the spar bending moment.
+      </p>
+
+      <figure style="margin:24px 0;">
+        <img src="aile de planeur photo principal.jpg" alt="Glider wing — main view" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.10); border:1px solid var(--border);" />
+        <figcaption style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;font-style:italic;" data-i18n="planeur.fig1.caption">Glider wing — geometry and sizing</figcaption>
+      </figure>
+    </div>
+
+    <!-- Deliverable 2 — Mesh -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="planeur.s2.title">Phase 2 — Mesh Generation (Star-CCM+)</h2>
+      <p class="content-p" data-i18n-html="planeur.s2.p1">
+        The second phase moves from analytical to numerical: generating the computational
+        mesh for CFD simulation in <strong>Star-CCM+</strong> (Siemens). The mesh defines
+        the spatial discretization of the flow domain around the wing profile.
+      </p>
+      <p class="content-p" data-i18n="planeur.s2.p2">
+        Key meshing decisions: boundary layer refinement near the wing surface
+        (to capture viscous effects), wake region refinement downstream, and
+        far-field domain sizing to minimize boundary condition artifacts. The mesh
+        quality — characterized by orthogonality, skewness, and aspect ratio of cells —
+        directly conditions the accuracy of the CFD solution.
+      </p>
+
+      <figure style="margin:24px 0;">
+        <img src="simu ccm+.png" alt="Star-CCM+ mesh — glider wing CFD" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.10); border:1px solid var(--border);" />
+        <figcaption style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;font-style:italic;" data-i18n="planeur.fig2.caption">Computational mesh — Star-CCM+ (Siemens)</figcaption>
+      </figure>
+    </div>
+
+    <!-- Deliverable 3 — CFD Simulation -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="planeur.s3.title">Phase 3 — CFD Simulation &amp; Python Post-Processing</h2>
+      <p class="content-p" data-i18n-html="planeur.s3.p2">
+        The final phase runs the full CFD simulation and post-processes results in Python.
+        The simulation solves the Reynolds-Averaged Navier-Stokes (RANS) equations
+        on the generated mesh, with a $k$-$\omega$ SST turbulence model adapted
+        for external aerodynamics.
+      </p>
+      <h3 class="content-h3" data-i18n="planeur.s3.outputs.title">Key outputs</h3>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-value">$C_L$</div>
+          <div class="result-label" data-i18n="planeur.r1.label">Lift coefficient — simulated vs. analytical</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">$C_D$</div>
+          <div class="result-label" data-i18n="planeur.r2.label">Drag coefficient — pressure + viscous components</div>
+        </div>
+        <div class="result-item">
+          <div class="result-value">$C_L/C_D$</div>
+          <div class="result-label" data-i18n="planeur.r3.label">Aerodynamic efficiency at design point</div>
+        </div>
+      </div>
+      <p class="content-p" data-i18n="planeur.s3.p1">
+        Python post-processing extracts pressure distributions, velocity fields,
+        and integral aerodynamic coefficients from Star-CCM+ output files.
+        The results are compared against the Phase 1 analytical predictions
+        to quantify the validity of the thin airfoil assumption.
+      </p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0;">
+        <figure style="margin:0;">
+          <img src="simu ccm+ 2.png" alt="CFD simulation results — Star-CCM+" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.10); border:1px solid var(--border);" />
+          <figcaption style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;font-style:italic;" data-i18n="planeur.fig3.caption">CFD results — Star-CCM+</figcaption>
+        </figure>
+        <figure style="margin:0;">
+          <img src="abaqus aile de planeur.png" alt="Structural analysis — Abaqus" style="width:100%; border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.10); border:1px solid var(--border);" />
+          <figcaption style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;font-style:italic;" data-i18n="planeur.fig4.caption">Structural analysis — Abaqus (FEA)</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Limitations -->
+    <div class="content-section">
+      <h2 class="content-h2" data-i18n="planeur.limits.title">Honest Limitations</h2>
+      <ul class="limitation-list" data-i18n-html="planeur.limits.list">
+        <li>No physical fabrication or experimental validation — simulation only</li>
+        <li>RANS turbulence model introduces modeling error in separated flow regimes (high angle of attack)</li>
+        <li>Geometry limited to 2D airfoil profile + finite span; no 3D wing-body interaction</li>
+        <li>Academic constraints on simulation time limited mesh refinement to moderate resolution</li>
+      </ul>
+    </div>
+
+  </div><!-- /project-content -->
+
+  <!-- ─── SIDEBAR ─────────────────────────────────────── -->
+  <aside class="project-sidebar">
+    <div class="sidebar-box" style="text-align:center;">
+      <a href="glider_report.pdf" target="_blank" class="p-btn" style="width:100%;box-sizing:border-box;" data-i18n="planeur.download.en">&#8659; Download Report (EN)</a>
+      <a href="glider_report_fr.pdf" target="_blank" class="p-btn p-btn-outline" style="width:100%;box-sizing:border-box;margin-top:8px;" data-i18n="planeur.download.fr">&#8659; Télécharger le rapport (FR)</a>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="planeur.sb.methods.title">Methods</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.methods.1">Prandtl lifting line theory</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.methods.2">Thin airfoil theory</div>
+      <div class="sidebar-item">RANS — k-ω SST</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.methods.4">Boundary layer meshing</div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="planeur.sb.tools.title">Tools</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.tools.1">Star-CCM+ (Siemens) — CFD</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.tools.2">Abaqus — structural FEA</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.tools.3">Python — post-processing</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.tools.4">numpy · matplotlib</div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="planeur.sb.deliverables.title">Deliverables</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.deliverables.1">Phase 1 — Sizing report</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.deliverables.2">Phase 2 — Mesh generation</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.deliverables.3">Phase 3 — CFD results + analysis</div>
+    </div>
+    <div class="sidebar-box">
+      <div class="sidebar-box-title" data-i18n="planeur.sb.context.title">Context</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.context.1">ENSAM Lille · Academic</div>
+      <div class="sidebar-item" data-i18n="planeur.sb.context.2">Supervised · Duo</div>
+      <div class="sidebar-item">2025–2026</div>
+    </div>
+  </aside>
+</div>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span>Hamza HOUIR ALAMI · ENSAM Lille · 2026</span>
+    <a href="index.html" style="color:var(--bordeaux);" data-i18n="footer.portfolio">← Back to portfolio</a>
+  </div>
+</footer>
+
+<script src="i18n.js?v=3"></script>
+<script src="script.js?v=2"></script>
+</body>
+</html>
