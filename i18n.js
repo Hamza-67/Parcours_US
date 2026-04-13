@@ -604,7 +604,7 @@
       'about.label': 'À propos',
       'about.p1':    'Deux projets séparés par 200 ans de physique partagent le même squelette. Un volant d\'inertie optimisé sous contrainte de périmètre. Un portefeuille financier alloué sous incertitude de marché. Les deux reviennent à la même question : comment prendre la meilleure décision quand le modèle n\'est jamais tout à fait juste ?',
       'about.p2':    'Venu du Maroc pour étudier en France — classe préparatoire au lycée Faidherbe, puis ingénieur à l\'ENSAM Lille. Ce parcours m\'a appris quelque chose au-delà des mathématiques : naviguer dans des systèmes inconnus, trouver les bonnes personnes, et construire sans filet.',
-      'about.quote': 'En parallèle des cours, j\'ai co-fondé ThePnLab (plateforme de trading algorithmique), gère la stratégie commerciale à l\'AMJE Lille, et contribue à la recherche au laboratoire LISPEN. Pas dispersé — tout en optimisation, tout en prise de décision, dans des domaines différents.',
+      'about.quote': 'En parallèle des cours, j\'ai fondé ThePnLab (plateforme de trading algorithmique), géré la stratégie commerciale à l\'AMJE Lille, et contribué à la recherche au laboratoire LISPEN. Pas dispersé — tout en optimisation, tout en prise de décision, dans des domaines différents.',
       'about.p3':    'Les États-Unis sont la prochaine étape — là où se fait le travail sérieux en RO, en IA, en finance, et dans l\'entrepreneuriat qui transforme un modèle en entreprise.',
       /* ── index — Fact labels ─────────────────────── */
       'fact.current':  'Actuellement',
