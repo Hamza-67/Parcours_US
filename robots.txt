@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hamza-67.github.io/Parcours_US/sitemap.xml
